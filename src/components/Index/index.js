@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import SongItem from "./SongItem";
-import { checkSignIn } from "../../actions";
+import { checkSignIn, search } from "../../actions";
 
 import "./index.css";
 import "materialize-css/dist/css/materialize.min.css";
@@ -22,6 +22,7 @@ class Index extends Component {
   }
 
   render() {
+    const { song } = this.state;
     return (
       <div className="Index">
         <div className="card">
@@ -36,7 +37,10 @@ class Index extends Component {
                   this.setState({ song: e.target.value });
                 }}
               />
-              <a className="waves-effect waves-light btn green">
+              <a
+                className="waves-effect waves-light btn green"
+                onClick={e => this.props.search(song)}
+              >
                 <i className="fa fa-search"></i>
               </a>
             </div>
@@ -59,7 +63,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      checkSignIn
+      checkSignIn,
+      search
     },
     dispatch
   );

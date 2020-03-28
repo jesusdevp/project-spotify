@@ -25,3 +25,29 @@ export const checkSignIn = () => {
     }
   };
 };
+
+const startFetch = () => {
+  return { type: "IS_FETCHING", isFetching: true };
+};
+const errorFetch = err => {
+  return { type: "ERROR_FETCH", isFetching: false, err };
+};
+const completeFetch = data => {
+  return { type: "COMPLETE_FETCH", isFetching: false, payload: data };
+};
+
+export const search = trackName => {
+  return (dispatch, getState) => {
+    dispatch(startFetch());
+    let track = new TrackHandler();
+    track
+      .search(trackName, { limit: 5 })
+      .then(trackList => {
+        console.log(trackList);
+        dispatch(completeFetch(trackList));
+      })
+      .catch(err => {
+        dispatch(errorFetch(err));
+      });
+  };
+};
