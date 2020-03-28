@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import SongItem from "./SongItem";
+import { checkSignIn } from "../../actions";
 
 import "./index.css";
 import "materialize-css/dist/css/materialize.min.css";
@@ -15,6 +16,11 @@ class Index extends Component {
       song: ""
     };
   }
+
+  componentWillMount() {
+    this.props.checkSignIn();
+  }
+
   render() {
     return (
       <div className="Index">
@@ -51,7 +57,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators(
+    {
+      checkSignIn
+    },
+    dispatch
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
