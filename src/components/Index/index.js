@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import SongItem from "./SongItem";
+
 import "./index.css";
 import "materialize-css/dist/css/materialize.min.css";
 
@@ -26,11 +28,13 @@ class Index extends Component {
                 }}
               />
               <a className="waves-effect waves-light btn green">
-                <i class="fa fa-search"></i>
+                <i className="fa fa-search"></i>
               </a>
-              <div>{/* {TODO} */}</div>
             </div>
           </div>
+        </div>
+        <div className="card Index-results-card">
+          <div className="card-content"></div>
         </div>
       </div>
     );
