@@ -43,7 +43,6 @@ export const search = trackName => {
     track
       .search(trackName, { limit: 5 })
       .then(trackList => {
-        console.log(trackList);
         dispatch(completeFetch(trackList));
       })
       .catch(err => {

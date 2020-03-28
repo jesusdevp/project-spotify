@@ -22,6 +22,7 @@ class Index extends Component {
   }
 
   render() {
+    console.log(this.props.songs);
     const { song } = this.state;
     return (
       <div className="Index">
@@ -31,7 +32,7 @@ class Index extends Component {
               <input
                 type="text"
                 className="Inde-searchBox-input"
-                placeholder="Song"
+                placeholder="Search Song, Artist, Album"
                 value={this.state.song}
                 onChange={e => {
                   this.setState({ song: e.target.value });
@@ -56,7 +57,8 @@ class Index extends Component {
 
 function mapStateToProps(state) {
   return {
-    routes: state.routes
+    routes: state.routes,
+    songs: state.player
   };
 }
 
