@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 import SongItem from "./SongItem";
 
 import "./index.css";
@@ -41,4 +44,14 @@ class Index extends Component {
   }
 }
 
-export default Index;
+function mapStateToProps(state) {
+  return {
+    routes: state.routes
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
