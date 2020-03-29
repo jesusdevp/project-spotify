@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import Spinner from "react-spinkit";
+
 import SongItem from "./SongItem";
 import { checkSignIn, search } from "../../actions";
 
@@ -53,8 +55,13 @@ class Index extends Component {
   }
 
   render() {
-    console.log(this.props.songs);
     const { song } = this.state;
+    const { songs } = this.props;
+
+    if (songs.type === "IS_FETCHING") {
+      return <Spinner name="double-bounce" />;
+    }
+
     return (
       <div className="Index">
         <div className="card">
