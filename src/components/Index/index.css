@@ -9,3 +9,42 @@
 .Index-searchBox {
   display: flex;
 }
+
+.SongItem {
+  display: flex;
+  width: 100%;
+  margin: 4% 2% 2% 2%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 2%;
+}
+
+.SongItem > a {
+  display: flex;
+  color: #212121;
+}
+
+.SongItem:hover {
+  background-color: rgb(209, 203, 203);
+}
+
+.SongItem-photo > img {
+  width: 100px;
+  height: auto;
+}
+
+.SongItem-info {
+  margin-left: 1vw;
+}
+
+.SongItem-info > h2 {
+  display: flex;
+  font-size: 1.4vw;
+  margin: 0;
+}
+
+.SongItem-info > h3 {
+  display: flex;
+  justify-content: left;
+  font-size: 1.2vw;
+}
