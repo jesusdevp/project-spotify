@@ -20,9 +20,9 @@ class Index extends Component {
     this.getResultsCard = this.getResultsCard.bind(this);
   }
 
-  componentWillMount() {
-    this.props.checkSignIn();
-  }
+  // componentWillMount() {
+  //   this.props.checkSignIn();
+  // }
 
   getTokenPath() {
     let path = window.location.href;

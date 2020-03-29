@@ -50,3 +50,18 @@ export const search = trackName => {
       });
   };
 };
+
+export const playTrack = songId => {
+  return (dispatch, getState) => {
+    dispatch(startFetch());
+    axios.get("https://api.spotify.com/v1/tracks/".concat(songId), {
+      headers: { Authorization: "Bearer" + client.token }
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    });
+  };
+};
