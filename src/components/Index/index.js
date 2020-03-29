@@ -22,6 +22,11 @@ class Index extends Component {
     this.props.checkSignIn();
   }
 
+  getTokenPath() {
+    let path = window.location.href;
+    return path.substring(path.indexOf("#"), path.length);
+  }
+
   getResultsCard() {
     const { songs } = this.props;
     if (songs.length > 0) {
@@ -33,6 +38,7 @@ class Index extends Component {
                 <SongItem
                   key={index}
                   songId={currentValue.id}
+                  tokenPatch={this.getTokenPath()}
                   albumPhoto={currentValue.album.images[0].url}
                   algumName={currentValue.album.name}
                   songName={currentValue.name}
