@@ -15,10 +15,35 @@ class Index extends Component {
     this.state = {
       song: ""
     };
+    this.getResultsCard = this.getResultsCard.bind(this);
   }
 
   componentWillMount() {
     this.props.checkSignIn();
+  }
+
+  getResultsCard() {
+    const { songs } = this.props;
+    if (songs.length > 0) {
+      return (
+        <div className="card">
+          <div className="card-content">
+            {songs.map((currentValue, index) => {
+              return (
+                <SongItem
+                  key={index}
+                  songId={currentValue.id}
+                  albumPhoto={currentValue.album.images[0].url}
+                  algumName={currentValue.album.name}
+                  songName={currentValue.name}
+                  artistName={currentValue.artists[0].name}
+                />
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
   }
 
   render() {
@@ -33,23 +58,21 @@ class Index extends Component {
                 type="text"
                 className="Inde-searchBox-input"
                 placeholder="Search Song, Artist, Album"
-                value={this.state.song}
                 onChange={e => {
                   this.setState({ song: e.target.value });
                 }}
+                value={song}
               />
-              <a
+              <button
                 className="waves-effect waves-light btn green"
                 onClick={e => this.props.search(song)}
               >
                 <i className="fa fa-search"></i>
-              </a>
+              </button>
             </div>
           </div>
         </div>
-        <div className="card Index-results-card">
-          <div className="card-content"></div>
-        </div>
+        {this.getResultsCard()}
       </div>
     );
   }
