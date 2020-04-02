@@ -13,30 +13,50 @@ class Player extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.checkSignIn();
+    this.props.playTrack(this.state.songId);
+  }
+
   // componentWillMount() {
-  //   this.props.checkSignIn();
-  //   this.props.playTrack(this.state.songId);
+  //   this.setState({
+  //     checkSignIn: this.props.checkSignIn(),
+  //     playTrack: this.props.playTrack(this.state.songId)
+  //   });
   // }
 
   render() {
-    return (
-      <div className="Player">
-        <div className="card">
-          <div className="card-content">
-            <div className="Player-left">
-              <img alt="img-album" />
+    const { player } = this.props;
+
+    if (player.type === "COMPLETE_SONG") {
+      console.log(player.payload);
+      return (
+        <div className="Player">
+          <div className="card">
+            <div className="card-content Player-box">
+              <div className="Player-left">
+                <img alt="img-album" src={player.payload.album.images[0].url} />
+              </div>
+              <div className="Player-right">
+                <audio controls>
+                  <source src={player.payload.preview_url} />
+                </audio>
+                <h4>{player.payload.name}</h4>
+                <h6>{player.payload.artists[0].name}</h6>
+              </div>
             </div>
-            <div className="Player-right"></div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return <div></div>;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    routes: state.routes
+    routes: state.routes,
+    player: state.player
   };
 }
 

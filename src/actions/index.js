@@ -51,17 +51,22 @@ export const search = trackName => {
   };
 };
 
+const completeSong = data => {
+  return { type: "COMPLETE_SONG", success: true, payload: data };
+};
+
 export const playTrack = songId => {
   return (dispatch, getState) => {
     dispatch(startFetch());
-    axios.get("https://api.spotify.com/v1/tracks/".concat(songId), {
-      headers: { Authorization: "Bearer" + client.token }
-        .then(response => {
-          console.log(response);
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    });
+    axios
+      .get("https://api.spotify.com/v1/tracks/".concat(songId), {
+        headers: { Authorization: "Bearer " + client.token }
+      })
+      .then(response => {
+        dispatch(completeSong(response.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 };

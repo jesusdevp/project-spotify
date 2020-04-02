@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <Router history={this.props.history}>
-        <div className="App">
+        <div>
           <Route exact path="/" component={index} />
           <Route path="/player/:songId" component={Player} />
         </div>

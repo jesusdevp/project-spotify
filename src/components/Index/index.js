@@ -20,8 +20,14 @@ class Index extends Component {
     this.getResultsCard = this.getResultsCard.bind(this);
   }
 
+  componentDidMount() {
+    this.props.checkSignIn();
+  }
+
   // componentWillMount() {
-  //   this.props.checkSignIn();
+  //   this.setState({
+  //     checkSignIn: this.props.checkSignIn()
+  //   });
   // }
 
   getTokenPath() {
@@ -40,7 +46,7 @@ class Index extends Component {
                 <SongItem
                   key={index}
                   songId={currentValue.id}
-                  tokenPatch={this.getTokenPath()}
+                  tokenPath={this.getTokenPath()}
                   albumPhoto={currentValue.album.images[0].url}
                   algumName={currentValue.album.name}
                   songName={currentValue.name}
